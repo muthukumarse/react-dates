@@ -144,6 +144,7 @@ export default class SingleDatePickerInputController extends React.PureComponent
         onClose({ date: newDate });
       }
     } else {
+      onFocusChange({ focused: false });
       onDateChange(null);
     }
   }
@@ -153,10 +154,11 @@ export default class SingleDatePickerInputController extends React.PureComponent
     const {
       onFocusChange,
       disabled,
+      focused,
     } = this.props;
 
     if (!disabled) {
-      onFocusChange({ focused: true });
+      onFocusChange({ focused: !focused });
     }
   }
 

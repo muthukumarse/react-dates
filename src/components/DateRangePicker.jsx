@@ -189,7 +189,7 @@ class DateRangePicker extends React.PureComponent {
 
   onOutsideClick(event) {
     const {
-      onFocusChange,
+      // onFocusChange,
       onClose,
       startDate,
       endDate,
@@ -205,7 +205,7 @@ class DateRangePicker extends React.PureComponent {
       showKeyboardShortcuts: false,
     });
 
-    onFocusChange(null);
+    // onFocusChange(null);
     onClose({ startDate, endDate });
   }
 
@@ -232,17 +232,40 @@ class DateRangePicker extends React.PureComponent {
     }
 
     onFocusChange(focusedInput);
+
+    if (focusedInput === null) {
+      this.setState({
+        isDateRangePickerInputFocused: false,
+        isDayPickerFocused: false,
+        showKeyboardShortcuts: false,
+      });
+    }
   }
 
-  onDayPickerFocus() {
+  onDayPickerFocus(e) {
     const { focusedInput, onFocusChange } = this.props;
-    if (!focusedInput) onFocusChange(START_DATE);
-
-    this.setState({
-      isDateRangePickerInputFocused: false,
-      isDayPickerFocused: true,
-      showKeyboardShortcuts: false,
-    });
+    if (e.key === 'ArrowDown') {
+      this.setState({
+        isDayPickerFocused: true,
+        showKeyboardShortcuts: false,
+      });
+    } else if (!focusedInput) {
+      onFocusChange(START_DATE);
+      this.setState({
+        isDateRangePickerInputFocused: true,
+        isDayPickerFocused: false,
+        showKeyboardShortcuts: false,
+      });
+    } else if (focusedInput === START_DATE) {
+      onFocusChange(END_DATE);
+    } else if (focusedInput === END_DATE) {
+      onFocusChange(null);
+      this.setState({
+        isDateRangePickerInputFocused: false,
+        isDayPickerFocused: false,
+        showKeyboardShortcuts: false,
+      });
+    }
   }
 
   onDayPickerFocusOut(event) {

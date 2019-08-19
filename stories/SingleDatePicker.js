@@ -34,8 +34,8 @@ storiesOf('SingleDatePicker (SDP)', module)
   )))
   .add('as part of a form', withInfo()(() => (
     <div>
-      <SingleDatePickerWrapper />
       <TestInput placeholder="Input 1" />
+      <SingleDatePickerWrapper />
       <TestInput placeholder="Input 2" />
       <TestInput placeholder="Input 3" />
     </div>

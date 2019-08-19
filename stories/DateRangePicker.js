@@ -65,8 +65,8 @@ storiesOf('DateRangePicker (DRP)', module)
   )))
   .add('as part of a form', withInfo()(() => (
     <div>
-      <DateRangePickerWrapper />
       <TestInput placeholder="Input 1" />
+      <DateRangePickerWrapper />
       <TestInput placeholder="Input 2" />
       <TestInput placeholder="Input 3" />
     </div>

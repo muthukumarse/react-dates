@@ -52,7 +52,7 @@ const defaultProps = {
   withPortal: false,
   withFullScreenPortal: false,
   initialVisibleMonth: null,
-  numberOfMonths: 2,
+  numberOfMonths: 1,
   keepOpenOnDateSelect: false,
   reopenPickerOnClearDate: false,
   isRTL: false,
@@ -100,7 +100,7 @@ class SingleDatePickerWrapper extends React.Component {
 
   render() {
     const { focused, date } = this.state;
-
+    console.log('selected Date', date)
     // autoFocus and initialDate are helper props for the example wrapper but are not
     // props on the SingleDatePicker itself and thus, have to be omitted.
     const props = omit(this.props, [
@@ -114,6 +114,7 @@ class SingleDatePickerWrapper extends React.Component {
         id="date_input"
         date={date}
         focused={focused}
+        showDefaultInputIcon
         onDateChange={this.onDateChange}
         onFocusChange={this.onFocusChange}
       />

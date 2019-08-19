@@ -188,7 +188,7 @@ export default class DateRangePickerInputController extends React.PureComponent 
     }
   }
 
-  onEndDateFocus() {
+  onEndDateFocus(e) {
     const {
       startDate,
       onFocusChange,
@@ -196,7 +196,9 @@ export default class DateRangePickerInputController extends React.PureComponent 
       disabled,
     } = this.props;
 
-    if (!startDate && withFullScreenPortal && (!disabled || disabled === END_DATE)) {
+    if (e.key === 'Escape') {
+      onFocusChange(null);
+    } else if (!startDate && withFullScreenPortal && (!disabled || disabled === END_DATE)) {
       // When the datepicker is full screen, we never want to focus the end date first
       // because there's no indication that that is the case once the datepicker is open and it
       // might confuse the user
@@ -238,10 +240,12 @@ export default class DateRangePickerInputController extends React.PureComponent 
     }
   }
 
-  onStartDateFocus() {
+  onStartDateFocus(e) {
     const { disabled, onFocusChange } = this.props;
 
-    if (!disabled || disabled === END_DATE) {
+    if (e.key === 'Escape') {
+      onFocusChange(null);
+    } else if (!disabled || disabled === END_DATE) {
       onFocusChange(START_DATE);
     }
   }

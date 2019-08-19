@@ -134,7 +134,9 @@ class DateInput extends React.PureComponent {
 
   onKeyDown(e) {
     e.stopPropagation();
-    if (!MODIFIER_KEY_NAMES.has(e.key)) {
+    if (e.key === 'Escape') {
+      this.onChange(e);
+    } else if (!MODIFIER_KEY_NAMES.has(e.key)) {
       this.throttledKeyDown(e);
     }
   }
@@ -179,7 +181,7 @@ class DateInput extends React.PureComponent {
       screenReaderMessage,
       focused,
       showCaret,
-      onFocus,
+      // onFocus,
       disabled,
       required,
       readOnly,
@@ -228,7 +230,7 @@ class DateInput extends React.PureComponent {
           value={value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
-          onFocus={onFocus}
+          // onFocus={onFocus}
           placeholder={placeholder}
           autoComplete="off"
           disabled={disabled}

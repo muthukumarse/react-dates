@@ -135,11 +135,12 @@ class DateRangePickerWrapper extends React.Component {
       'initialEndDate',
       'stateDateWrapper',
     ]);
-
+    console.log('selectedDate', startDate, endDate);
     return (
       <div>
         <DateRangePicker
           {...props}
+          showDefaultInputIcon
           onDatesChange={this.onDatesChange}
           onFocusChange={this.onFocusChange}
           focusedInput={focusedInput}
